@@ -7,12 +7,12 @@ module.exports = {
     theme: {
       extend: {
         colors: {
-          'olive-green': '#6B705C',
-          'oxidized-red': '#A45A52',
+          'green': '#6B705C',
+          'red': '#A45A52',
           'cream': '#F3E9DC',
-          'dark-brown': '#4E342E',
-          'antique-bronze': '#A67C52',
-          'parchment-beige': '#E3D5C2',
+          'brown': '#4E342E',
+          'bronze': '#A67C52',
+          'beige': '#E3D5C2',
         },
         fontFamily: {
           libre: ['Libre Baskerville', 'serif'],
