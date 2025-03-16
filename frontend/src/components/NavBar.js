@@ -1,13 +1,21 @@
-import React from 'react';
+import React from "react";
 
-function NavBar() {
+const Navbar = () => {
   return (
-    <nav className="bg-violet">
-        <div className="flex items-center justify-between lg:justify-center p-10">
-            nav 
-        </div>
+    <nav className="flex justify-between items-center bg-violet text-indigo p-10">
+      {/* Left Section */}
+      <div className="text-left font-bold font-libre text-lime">
+        HANDWRITING RECOGNITION
+      </div>
+
+      {/* Right Section - Buttons */}
+      <div className="flex space-x-4">
+        <a href="/" className="text-lime hover:text-platinum font-lora">HOME</a>
+        <a href="/about" className="text-lime hover:text-platinum font-lora">ABOUT</a>
+        <a href="/profile" className="text-lime hover:text-platinum font-lora">PROFILE</a>
+      </div>
     </nav>
   );
-}
+};
 
-export default NavBar;
+export default Navbar;
