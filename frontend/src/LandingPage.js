@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
+
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="p-5 space-y-10">
       {/* First Div */}
@@ -8,7 +16,7 @@ const LandingPage = () => {
         {/* Image on the Left */}
         <div className="sm:w-1/3 mb-4 sm:mb-0">
           <img
-            src="image.jpg"
+            src="image2.jpg"
             alt="Handwritten Data"
             className="w-full h-auto rounded-md"
           />
