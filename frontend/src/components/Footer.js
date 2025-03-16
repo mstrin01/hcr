@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="flex flex-col sm:flex-row justify-between items-center bg-violet text-indigo p-5 text-sm">
       {/* Left Section */}
       <div className="flex-1 text-left font-bold font-libre text-lime mb-4 sm:mb-0">
-        HANDWRITING RECOGNITION
+        HANDWRITING <br /> RECOGNITION.
       </div>
 
       {/* Center Section */}

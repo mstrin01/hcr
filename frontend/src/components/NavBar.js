@@ -19,7 +19,7 @@ const Navbar = () => {
     <nav className="flex justify-between items-center bg-violet text-indigo p-10">
       {/* Left Section */}
       <div className="text-left font-bold font-libre text-lime">
-        HANDWRITING RECOGNITION
+        HANDWRITING <br /> RECOGNITION.
       </div>
 
       {/* Right Section - Buttons */}
@@ -29,7 +29,7 @@ const Navbar = () => {
 
         {user ? (
           <>
-            <Link to="/profile" className="text-lime hover:text-platinum font-lora">PROFILE</Link>
+            <Link to="/dashboard" className="text-lime hover:text-platinum font-lora">DASHBOARD</Link>
             <button 
               onClick={() => signOut(auth)} 
               className="text-lime hover:text-platinum font-lora"
