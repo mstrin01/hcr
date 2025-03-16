@@ -15,7 +15,7 @@ const LoginPage = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/"); // Redirect to home after login
+      navigate("/dashboard"); // Redirect to home after login
     } catch (err) {
       setError("Invalid email or password");
     }
