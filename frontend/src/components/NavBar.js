@@ -1,44 +1,52 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { auth } from "../firebase"; // Import Firebase auth
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Listen for auth state changes
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
 
-    return () => unsubscribe(); // Cleanup listener
+    return () => unsubscribe();
   }, []);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/"); // Nakon odjave ide na Landing Page
+  };
 
   return (
     <nav className="flex justify-between items-center bg-violet text-indigo p-10">
-      {/* Left Section */}
-      <div className="text-left font-bold font-libre text-lime">
+      <div className="text-left font-bold font-libre text-lime hover:text-indigo">
         HANDWRITING <br /> RECOGNITION.
       </div>
 
-      {/* Right Section - Buttons */}
       <div className="flex space-x-4">
-        <Link to="/" className="text-lime hover:text-platinum font-lora">HOME</Link>
-        <Link to="/about" className="text-lime hover:text-platinum font-lora">ABOUT</Link>
+        <Link to={user ? "/home" : "/"} className="text-lime hover:text-indigo font-lora">
+          HOME
+        </Link>
+        <Link to="/about" className="text-lime hover:text-indigo font-lora">
+          ABOUT
+        </Link>
 
         {user ? (
           <>
-            <Link to="/dashboard" className="text-lime hover:text-platinum font-lora">DASHBOARD</Link>
-            <button 
-              onClick={() => signOut(auth)} 
-              className="text-lime hover:text-platinum font-lora"
-            >
+            <Link to="/dashboard" className="text-lime hover:text-indigo font-lora">
+              DASHBOARD
+            </Link>
+            <button onClick={handleLogout} className="text-lime hover:text-indigo font-lora">
               LOGOUT
             </button>
           </>
         ) : (
-          <Link to="/login" className="text-lime hover:text-platinum font-lora">LOGIN</Link>
+          <Link to="/login" className="text-lime hover:text-indigo font-lora">
+            LOGIN
+          </Link>
         )}
       </div>
     </nav>

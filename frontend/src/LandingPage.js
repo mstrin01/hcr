@@ -25,7 +25,7 @@ const LandingPage = () => {
             <br /> Login to start uploading documents.
           </p>
           <a href="/login">
-            <button className="bg-pastel hover:bg-indigo text-indigo hover:text-pastel font-libre px-8 py-2 mt-3 rounded-lg border-2 border-indigo">
+            <button className="bg-lime hover:bg-indigo text-indigo hover:text-pastel font-libre px-8 py-2 mt-3 rounded-lg border-2 border-indigo">
               LOGIN
             </button>
           </a>
