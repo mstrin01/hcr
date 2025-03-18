@@ -14,7 +14,6 @@ const Footer = () => {
         <ul className="list-none p-0 m-0">
           <li><a href="/" className="block font-lora text-lime hover:text-indigo">HOME</a></li>
           <li><a href="/about" className="block font-lora text-lime hover:text-indigo">ABOUT</a></li>
-          <li><a href="/profile" className="block font-lora text-lime hover:text-indigo">PROFILE</a></li>
         </ul>
       </div>
 
