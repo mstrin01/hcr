@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center bg-violet text-indigo p-10">
       <div className="text-left font-bold font-libre text-lime hover:text-indigo">
-        HANDWRITING <br /> RECOGNITION.
+        HANDWRITING<br />  RECOGNITION.
       </div>
 
       <div className="flex space-x-4">

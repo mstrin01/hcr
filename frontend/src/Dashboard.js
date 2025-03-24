@@ -1,29 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Dashboard() {
   const [file, setFile] = useState(null);
+  const [extractedText, setExtractedText] = useState("");
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+    console.log("Selected file:", selectedFile); // Debug log
     if (selectedFile) {
       setFile(selectedFile);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("Submitting file:", file); // Debug log
+  
     if (!file) {
       alert("Please select a file before submitting!");
       return;
     }
-
-    console.log("File uploaded:", file);
+  
+    const formData = new FormData();
+    formData.append("file", file);
+  
+    try {
+      const response = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+  
+      const data = await response.json();
+      console.log("Extracted text:", data.text);
+  
+      if (response.ok) {
+        setExtractedText(data.text);
+      } else {
+        alert("Error extracting text.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Server error, please try again later.");
+    }
+  
     setFile(null);
   };
 
+  useEffect(() => {
+    console.log("File state updated:", file);
+  }, [file]);
+
   return (
-    <div className="min-h-screen bg-lilac flex items-center justify-center p-10">
+    <div className="min-h-screen bg-lilac flex flex-col items-center justify-center p-10">
       <div className="w-full max-w-md bg-violet p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-semibold text-indigo mb-4 text-center">
           Upload a File
@@ -33,6 +61,7 @@ function Dashboard() {
           <div className="mb-4">
             <input
               type="file"
+              name="file"
               onChange={handleFileChange}
               className="block w-full text-sm text-indigo bg-lilac border border-indigo rounded-md file:border-0 file:bg-pastel file:text-indigo file:py-2 file:px-4 file:rounded-md hover:file:bg-lime"
             />
@@ -47,13 +76,14 @@ function Dashboard() {
             </button>
           </div>
         </form>
-
-        {file && (
-          <div className="mt-4 text-sm text-lilac text-center">
-            <p><strong>Selected file:</strong> {file.name}</p>
-          </div>
-        )}
       </div>
+
+      {extractedText && (
+        <div className="mt-6 w-full max-w-md bg-violet p-4 rounded-lg shadow-lg text-indigo text-center">
+          <h3 className="font-semibold mb-2">Extracted Text:</h3>
+          <p className="text-sm text-platinum">{extractedText}</p>
+        </div>
+      )}
     </div>
   );
 }
