@@ -2,13 +2,17 @@ import boto3
 import json
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-from flask_cors import CORS  # Dodaj flask_cors
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Omogućava CORS za sve rute
+CORS(app)
 
-# AWS Credentials (pobrini se da ih imaš u okruženju)
+# AWS Rekognition client (ostavi ovo ako planiraš koristiti Amazon)
 rekognition = boto3.client("rekognition", region_name="us-east-1")
+
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({"message": "Backend radi! :)"}), 200
 
 @app.route("/upload", methods=["POST"])
 def upload_file():
@@ -18,16 +22,21 @@ def upload_file():
     file = request.files["file"]
     image_bytes = file.read()
 
-    try:
-        # Slanje slike Amazon Rekognitionu
-        response = rekognition.detect_text(Image={"Bytes": image_bytes})
+    #try:
+        # Amazon Rekognition poziv (ako ga ne koristiš još, možeš ovo zakomentirati)
+    #    response = rekognition.detect_text(Image={"Bytes": image_bytes})
 
-        # Ekstrakcija teksta
-        extracted_text = " ".join([text["DetectedText"] for text in response.get("TextDetections", [])])
+    #   extracted_text = " ".join([
+    #        text["DetectedText"]
+    #       for text in response.get("TextDetections", [])
+    #    ])
 
-        return jsonify({"text": extracted_text}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    #    return jsonify({"text": extracted_text}), 200
+    #except Exception as e:
+    #    return jsonify({"error": str(e)}), 500 
+
+    return jsonify({"text": "Ovo je testni odgovor jer AWS još nije spojen."}), 200
+
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)  # Dodano port=5000 radi sigurnosti
+    app.run(debug=True, port=5000)
