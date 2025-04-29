@@ -7,7 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# AWS Rekognition client (ostavi ovo ako planiraš koristiti Amazon)
+
 rekognition = boto3.client("rekognition", region_name="us-east-1")
 
 @app.route("/", methods=["GET"])
