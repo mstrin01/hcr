@@ -1,12 +1,12 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from './LandingPage';  
+import LandingPage from './components/LandingPage';  
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
-import AboutPage from './AboutPage';
-import LoginPage from './LoginPage';
-import Dashboard from './Dashboard';
-import HomePage from './HomePage';
+import AboutPage from './components/AboutPage';
+import LoginPage from './components/LoginPage';
+import Dashboard from './components/Dashboard';
+import HomePage from './components/HomePage';
 
 function App() {
   return (
