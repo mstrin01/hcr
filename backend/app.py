@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-rekognition = boto3.client("rekognition", region_name="us-east-1")
+textract = boto3.client("textract", region_name="eu-central-1")
 
 @app.route("/", methods=["GET"])
 def index():
@@ -22,20 +22,24 @@ def upload_file():
     file = request.files["file"]
     image_bytes = file.read()
 
-    #try:
-        # Amazon Rekognition poziv (ako ga ne koristiš još, možeš ovo zakomentirati)
-    #    response = rekognition.detect_text(Image={"Bytes": image_bytes})
+    # Ovo kad spojim AWS
+    # try:
+    #     response = textract.detect_document_text(
+    #         Document={"Bytes": image_bytes}
+    #     )
+    #
+    #     extracted_text = " ".join(
+    #         [block["Text"] for block in response["Blocks"] if block["BlockType"] == "LINE"]
+    #     )
+    #
+    #     return jsonify({"text": extracted_text}), 200
+    #
+    # except Exception as e:
+    #     print("AWS error:", str(e))
+    #     return jsonify({"error": str(e)}), 500
 
-    #   extracted_text = " ".join([
-    #        text["DetectedText"]
-    #       for text in response.get("TextDetections", [])
-    #    ])
-
-    #    return jsonify({"text": extracted_text}), 200
-    #except Exception as e:
-    #    return jsonify({"error": str(e)}), 500 
-
-    return jsonify({"text": "Ovo je testni odgovor jer AWS još nije spojen."}), 200
+    # Ovo  za testiranje bez AWS-a
+    return jsonify({"text": "Upload uspješan!"}), 200
 
 
 if __name__ == "__main__":

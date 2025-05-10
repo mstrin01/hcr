@@ -34,7 +34,7 @@ const Navbar = () => {
           HANDWRITING<br />RECOGNITION.
         </div>
 
-        {/* Hamburger ikonica */}
+        
         <div className="md:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
             <svg className="w-6 h-6 text-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24">
