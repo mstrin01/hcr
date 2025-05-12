@@ -2,11 +2,9 @@ import React from "react";
 
 const LandingPage = () => {
   return (
-    <div className="bg-lilac h-auto py-10"> {/* Maknut min-h-screen, dodan py-10 za bolju kontrolu */}
-      {/* Main Content */}
-      <div className="flex flex-col sm:flex-row items-center px-4 mb-10"> {/* Maknut space-y-10 i dodan mb-10 */}
-        {/* Image on the Left - Povećana */}
-        <div className="sm:w-1/3 ml-8">
+    <div className="bg-lilac min-h-screen flex flex-col"> 
+      <div className="flex flex-col sm:flex-row items-center  px-4 sm:px-10 py-10 flex-grow"> 
+        <div className="sm:w-1/3 ml-8 sm:mb-0">
           <img
             src="image2.jpg"
             alt="Handwritten Data"
@@ -14,7 +12,6 @@ const LandingPage = () => {
           />
         </div>
 
-        {/* Text on the Right */}
         <div className="sm:w-3/5 text-left space-y-4 ml-6">
           <p className="text-lg font-lora text-indigo">
             Upload images or documents with handwritten data <br /> and let our app
@@ -31,6 +28,7 @@ const LandingPage = () => {
           </a>
         </div>
       </div>
+
     </div>
   );
 };
