@@ -7,7 +7,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-
 textract = boto3.client("textract", region_name="eu-central-1")
 
 @app.route("/", methods=["GET"])
@@ -22,25 +21,20 @@ def upload_file():
     file = request.files["file"]
     image_bytes = file.read()
 
-    # Ovo kad spojim AWS
-    # try:
-    #     response = textract.detect_document_text(
-    #         Document={"Bytes": image_bytes}
-    #     )
-    #
-    #     extracted_text = " ".join(
-    #         [block["Text"] for block in response["Blocks"] if block["BlockType"] == "LINE"]
-    #     )
-    #
-    #     return jsonify({"text": extracted_text}), 200
-    #
-    # except Exception as e:
-    #     print("AWS error:", str(e))
-    #     return jsonify({"error": str(e)}), 500
+    try:
+        response = textract.detect_document_text(
+            Document={"Bytes": image_bytes}
+        )
 
-    # Ovo  za testiranje bez AWS-a
-    return jsonify({"text": "Upload uspješan!"}), 200
+        extracted_text = " ".join(
+            [block["Text"] for block in response["Blocks"] if block["BlockType"] == "LINE"]
+        )
 
+        return jsonify({"text": extracted_text}), 200
+
+    except Exception as e:
+        print("AWS error:", str(e))
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
