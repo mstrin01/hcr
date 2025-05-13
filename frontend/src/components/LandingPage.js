@@ -2,7 +2,7 @@ import './LandingPage.css';
 
 const LandingPage = () => {
   return (
-    <div className="bg-lilac min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden">
+    <div className="bg-gradient-to-br from-lilac to-pastel min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden">
       
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-lilac to-platinum opacity-30 z-0 animate-bg-gradient"></div>
 
@@ -32,7 +32,7 @@ const LandingPage = () => {
 
           <div className="text-center sm:text-left w-full">
             <a href="/login">
-              <button className="bg-lime hover:bg-indigo text-indigo hover:text-pastel font-libre px-10 py-3 rounded-xl border-2 border-indigo transition-all duration-300 shadow hover:shadow-lg hover:scale-105">
+              <button className="bg-violet hover:bg-indigo text-pastel hover:text-lime px-10 py-3 rounded-lg font-semibold transition-all duration-300 shadow hover:shadow-lg hover:scale-105">
                 LOGIN
               </button>
             </a>

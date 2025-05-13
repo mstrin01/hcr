@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-lilac to-pastel px-4">
-      <div className="bg-lilac shadow-xl rounded-2xl p-8 w-full max-w-md">
+      <div className="bg-white shadow-2xl rounded-2xl  p-8 w-full max-w-md">
         <h2 className="text-indigo text-2xl font-bold mb-2 text-center">Welcome Back</h2>
         <p className="text-sm text-indigo mb-6 text-center">Please log in to your account</p>
 
@@ -36,7 +36,7 @@ const LoginPage = () => {
             <input
               type="email"
               placeholder="Email"
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-platinum focus:outline-none focus:ring-2 focus:ring-indigo"
+              className="w-full pl-10 bg-white pr-4 py-2 rounded-lg border border-platinum focus:outline-none focus:ring-2 focus:ring-indigo"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

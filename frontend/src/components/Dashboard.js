@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { UploadCloud } from "lucide-react";
 
 function Dashboard() {
   const [file, setFile] = useState(null);
@@ -13,25 +14,23 @@ function Dashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!file) {
       alert("Please select a file before submitting!");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("file", file);
-  
-    console.log("Uploading file:", file); // 👈 Dodaj ovo
-  
+
     try {
       const response = await fetch("http://localhost:5000/upload", {
         method: "POST",
         body: formData,
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         setExtractedText(data.text);
       } else {
@@ -41,53 +40,44 @@ function Dashboard() {
       console.error("Error:", error);
       alert("Server error, please try again later.");
     }
-  
+
     setFile(null);
   };
-  
 
   return (
-    <div className="min-h-screen flex flex-col bg-lilac">
-      <main className="flex-grow w-full flex flex-col items-center justify-start px-4 py-8 sm:px-6 lg:px-8">
-        
-        <div className="w-full max-w-lg bg-violet p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl sm:text-2xl font-semibold text-indigo mb-4 text-center">
-            Upload a File
-          </h2>
-
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <input
-                type="file"
-                name="file"
-                onChange={handleFileChange}
-                className="block w-full text-sm text-indigo bg-lilac border border-indigo rounded-md file:border-0 file:bg-pastel file:text-indigo file:py-2 file:px-4 file:rounded-md hover:file:bg-lime"
-              />
-            </div>
-
-            <div className="flex justify-center">
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-5 py-2 bg-pastel text-indigo rounded-md hover:bg-lime hover:text-indigo font-semibold transition duration-300"
-              >
-                Upload
-              </button>
-            </div>
-          </form>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-lilac to-pastel px-4">
+      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
+        <div className="flex flex-col items-center mb-6">
+          <UploadCloud className="text-indigo mb-2" size={32} />
+          <h2 className="text-indigo text-2xl font-bold mb-1">Upload a File</h2>
+          <p className="text-sm text-indigo text-center">Extract text from your document</p>
         </div>
 
-        
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="file"
+            name="file"
+            onChange={handleFileChange}
+            className="block w-full text-sm text-indigo border border-platinum rounded-lg file:bg-pastel file:text-indigo file:border-none file:py-2 file:px-4 file:rounded-lg hover:file:bg-lime transition"
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-violet hover:bg-indigo text-pastel hover:text-lime  font-semibold py-2 rounded-lg  transition-colors"
+          >
+            Upload
+          </button>
+        </form>
+
         {extractedText && (
-          <div className="mt-6 w-full max-w-lg bg-violet p-4 rounded-lg shadow-lg text-indigo">
+          <div className="mt-6 bg-violet p-4 rounded-lg shadow text-indigo max-h-80 overflow-auto">
             <h3 className="font-semibold mb-2 text-center">Extracted Text:</h3>
-            <div className="max-h-80 overflow-auto px-2">
-              <p className="text-sm text-platinum whitespace-pre-wrap break-words">
-                {extractedText}
-              </p>
-            </div>
+            <p className="text-sm text-platinum whitespace-pre-wrap break-words px-1">
+              {extractedText}
+            </p>
           </div>
         )}
-      </main>
+      </div>
     </div>
   );
 }
