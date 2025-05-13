@@ -1,46 +1,42 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { FilePlus, FolderOpen } from "lucide-react";
 
 function HomePage() {
   const navigate = useNavigate();
 
   const handleUploadClick = () => {
-    navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const handleViewDocuments = () => {
-    navigate('/documents');
+    navigate("/documents");
   };
 
   return (
-    <div className="bg-lilac font-sans flex flex-col min-h-screen">
-      <main className="flex-grow flex items-center justify-center py-6">
-        <section className="w-full max-w-xl bg-lilac rounded-lg px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl sm:text-3xl font-libre font-semibold text-indigo mb-4">
-            Welcome Back!
-          </h1>
+    <div className="bg-gradient-to-br from-lilac to-pastel min-h-screen flex items-center justify-center px-4">
+      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md text-center">
+        <h1 className="text-3xl font-bold text-indigo mb-2">Welcome Back!</h1>
+        <p className="text-indigo text-sm mb-6">
+          You're all set! What would you like to do today?
+        </p>
 
-          <p className="text-base sm:text-lg font-lora text-indigo-700 mb-6">
-            You're all set! What would you like to do today?
-          </p>
+        <div className="space-y-4">
+          <button
+            onClick={handleUploadClick}
+            className="w-full flex items-center justify-center gap-2 bg-pastel text-indigo px-5 py-3 rounded-lg hover:bg-lime transition font-semibold"
+          >
+            <FilePlus size={18} /> Upload New Document
+          </button>
 
-          <div className="flex flex-col items-center space-y-4 w-full">
-            <button
-              onClick={handleUploadClick}
-              className="bg-lime hover:bg-indigo text-indigo hover:text-pastel px-6 py-3 rounded-lg border-2 border-indigo font-lora w-full sm:w-3/4 text-sm sm:text-base transition duration-300"
-            >
-              UPLOAD NEW DOCUMENT
-            </button>
-
-            <button
-              onClick={handleViewDocuments}
-              className="bg-lime hover:bg-indigo text-indigo hover:text-pastel px-6 py-3 rounded-lg border-2 border-indigo font-lora w-full sm:w-3/4 text-sm sm:text-base transition duration-300"
-            >
-              VIEW MY DOCUMENTS
-            </button>
-          </div>
-        </section>
-      </main>
+          <button
+            onClick={handleViewDocuments}
+            className="w-full flex items-center justify-center gap-2 bg-indigo text-white px-5 py-3 rounded-lg hover:bg-violet transition font-semibold"
+          >
+            <FolderOpen size={18} /> View My Documents
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
