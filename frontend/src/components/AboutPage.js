@@ -1,38 +1,42 @@
-import React from "react";
-
 function AboutPage() {
   return (
     <div className="bg-lilac font-sans py-10">
-      
-      
       <section className="container mx-auto p-8 mt-8 bg-lilac rounded-lg">
-        <h1 className="text-3xl font-libre font-semibold text-indigo mb-0">What Can I Do With This App? </h1>
-        <div className="grid lg:grid-cols-2 gap-8">
-          <div className="flex flex-col justify-center">
+        <h1 className="text-3xl font-libre font-semibold text-indigo mb-6 text-center">What Can I Do With This App?</h1>
+        <div className="flex flex-col items-center">
+          <div className="bg-pastel rounded-lg shadow-lg p-6 mb-6 max-w-3xl w-full">
+            <h2 className="text-2xl font-lora font-semibold text-indigo-700 mb-4">What is OCR?</h2>
             <p className="text-lg font-lora text-indigo-700 mb-4">
-              Our app allows users to easily upload images or documents containing handwritten data. The app then uses advanced optical character recognition (OCR) technology to extract the handwritten text and present it in a readable format. Whether you're dealing with notes, scanned documents, or other handwritten materials, our app helps you transform them into editable text.
+              Our app uses Optical Character Recognition (OCR) technology to extract handwritten text from images and documents. OCR allows machines to recognize and convert text from images, enabling users to quickly transform handwritten content into editable and searchable text.
             </p>
             <p className="text-lg font-lora text-indigo-700 mb-4">
-              It's simple to use, secure, and works with a variety of file types, making it perfect for students, professionals, and anyone who needs quick and accurate text extraction from handwritten content.
+              OCR is an essential tool for digitalizing handwritten notes, receipts, and other documents that are typically hard to edit. By using OCR, the app eliminates the need for manual transcription, saving you time and effort.
             </p>
-            
-            
-            <div className="flex justify-center mt-4">
-              <a href="/dashboard">
-                <button className="bg-pastel hover:bg-indigo text-indigo hover:text-pastel px-2 py-1 rounded-lg border-2 border-indigo font-lora w-auto text-m">
-                  GET STARTED
-                </button>
-              </a>
-            </div>
           </div>
-          <div className="flex justify-center items-center">
-            <img src="image.jpg" alt="Handwritten Data Extraction" className="rounded-lg shadow-lg" />
+          <div className="bg-pastel rounded-lg shadow-lg p-6 mb-6 max-w-3xl w-full">
+            <h2 className="text-2xl font-lora font-semibold text-indigo-700 mb-4">How Does It Work?</h2>
+            <p className="text-lg font-lora text-indigo-700 mb-4">
+              Simply upload your images or documents, and our app will automatically extract the text for you in a readable format. It’s that easy and fast.
+            </p>
+          </div>
+          <div className="bg-pastel rounded-lg shadow-lg p-6 mb-6 max-w-3xl w-full">
+            <h2 className="text-2xl font-lora font-semibold text-indigo-700 mb-4">Who Can Benefit?</h2>
+            <p className="text-lg font-lora text-indigo-700 mb-4">
+              Perfect for students, professionals, and anyone who needs quick and accurate text extraction from handwritten content.
+            </p>
+          </div>
+          <div className="flex justify-center mt-6">
+            <a href="/dashboard">
+              <button className="bg-indigo hover:bg-violet text-pastel hover:text-pastel px-6 py-2 rounded-lg border-2 border-indigo font-lora w-auto text-m">
+                GET STARTED
+              </button>
+            </a>
           </div>
         </div>
       </section>
-      
     </div>
   );
 }
+
 
 export default AboutPage;
