@@ -31,7 +31,9 @@ const Navbar = () => {
     <nav className="bg-violet text-indigo p-5">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="text-left font-bold font-libre text-lime hover:text-indigo text-xl leading-tight">
-          HANDWRITING<br />RECOGNITION.
+          <Link to="/">
+            HANDWRITING<br />RECOGNITION.
+          </Link>
         </div>
 
         
@@ -44,7 +46,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Navigacija - desktop */}
+        
         <div className="hidden md:flex space-x-4">
           <Link to={user ? "/home" : "/"} className={navLinkClass(user ? "/home" : "/")}>
             HOME
@@ -69,7 +71,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Navigacija - mobilna (centrirana) */}
+      
       {isMenuOpen && (
         <div className="md:hidden mt-4 flex flex-col items-center text-center space-y-2">
           <Link
