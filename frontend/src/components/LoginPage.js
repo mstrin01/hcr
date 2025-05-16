@@ -25,7 +25,7 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-lilac to-pastel px-4">
       <div className="bg-white shadow-2xl rounded-2xl  p-8 w-full max-w-md">
-        <h2 className="text-indigo text-2xl font-bold mb-2 text-center">Welcome Back</h2>
+        <h2 className="text-violet text-2xl font-bold mb-2 text-center">Welcome Back</h2>
         <p className="text-sm text-indigo mb-6 text-center">Please log in to your account</p>
 
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}

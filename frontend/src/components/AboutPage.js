@@ -27,7 +27,7 @@ function AboutPage() {
           </div>
           <div className="flex justify-center mt-6">
             <a href="/dashboard">
-              <button className="bg-violet hover:bg-indigo text-pastel hover:text-lime px-6 py-2 rounded-lg font-semibold w-auto text-m">
+              <button className="bg-violet hover:bg-indigo text-pastel hover:text-lime transition-all duration-300 shadow px-6 py-2 rounded-lg font-semibold w-auto text-m">
                 GET STARTED
               </button>
             </a>

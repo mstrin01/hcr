@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useAuth } from "../context/AuthContext";
+
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const { user } = useAuth();
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -31,7 +27,7 @@ const Navbar = () => {
     <nav className="bg-violet text-indigo p-5">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="text-left font-bold font-libre text-lime hover:text-indigo text-xl leading-tight">
-          <Link to="/">
+          <Link to={user ? "/home" : "/"}>
             HANDWRITING<br />RECOGNITION.
           </Link>
         </div>
