@@ -32,7 +32,7 @@ function Dashboard() {
       const data = await response.json();
 
       if (response.ok) {
-        setExtractedText(data.text);
+       setExtractedText(data.text);
       } else {
         alert("Error extracting text.");
       }
@@ -46,7 +46,7 @@ function Dashboard() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-lilac to-pastel px-4">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
+      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-4xl">
         <div className="flex flex-col items-center mb-6">
           <UploadCloud className="text-violet mb-2" size={32} />
           <h2 className="text-violet text-2xl font-bold mb-1">Upload a File</h2>
