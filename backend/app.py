@@ -14,6 +14,7 @@ def index():
     return jsonify({"message": "Backend radi! :)"}), 200
 
 @app.route("/upload", methods=["POST"])
+@app.route("/upload", methods=["POST"])
 def upload_file():
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
@@ -22,15 +23,19 @@ def upload_file():
     image_bytes = file.read()
 
     try:
-        response = textract.detect_document_text(
-            Document={"Bytes": image_bytes}
+        response = textract.analyze_document(
+            Document={"Bytes": image_bytes},
+            FeatureTypes=["TABLES", "FORMS"]
         )
 
-        extracted_text = " ".join(
-            [block["Text"] for block in response["Blocks"] if block["BlockType"] == "LINE"]
-        )
+        lines = []
+        for block in response["Blocks"]:
+            if block["BlockType"] == "LINE":
+                lines.append(block["Text"])
 
-        return jsonify({"text": extracted_text}), 200
+        final_text = "\n".join(lines)
+
+        return jsonify({"text": final_text}), 200  
 
     except Exception as e:
         print("AWS error:", str(e))
