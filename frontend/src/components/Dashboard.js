@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { UploadCloud } from "lucide-react";
+import { db, auth } from "../firebase"; 
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function Dashboard() {
   const [file, setFile] = useState(null);
@@ -44,7 +46,24 @@ function Dashboard() {
     setFile(null);
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
+    const user = auth.currentUser;
+    if (!user) {
+      alert("You must be logged in to save the document.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "extractedTexts"), {
+        text: extractedText,
+        user: user.email,
+        createdAt: serverTimestamp(),
+      });
+      console.log("Text saved to Firestore.");
+    } catch (error) {
+      console.error("Error saving to Firestore:", error);
+    }
+
     const element = document.createElement("a");
     const fileBlob = new Blob([extractedText], { type: "text/plain" });
     element.href = URL.createObjectURL(fileBlob);
@@ -91,7 +110,7 @@ function Dashboard() {
               onClick={handleDownload}
               className="mt-4 bg-pastel hover:bg-lilac text-indigo font-semibold py-2 px-4 rounded-lg transition-colors block mx-auto"
             >
-              Download text 
+              Download text
             </button>
           </div>
         )}
