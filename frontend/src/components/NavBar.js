@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { useAuth } from "../context/AuthContext";
 
-
 const Navbar = () => {
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,7 +30,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        
+        {/* Mobile menu toggle */}
         <div className="md:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
             <svg className="w-6 h-6 text-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,14 +40,22 @@ const Navbar = () => {
           </button>
         </div>
 
-        
+        {/* Desktop menu */}
         <div className="hidden md:flex space-x-4">
           <Link to={user ? "/home" : "/"} className={navLinkClass(user ? "/home" : "/")}>
             HOME
           </Link>
-          <Link to="/about" className={navLinkClass("/about")}>
-            ABOUT
-          </Link>
+
+          {user ? (
+            <Link to="/documents" className={navLinkClass("/documents")}>
+              MY DOCUMENTS
+            </Link>
+          ) : (
+            <Link to="/about" className={navLinkClass("/about")}>
+              ABOUT
+            </Link>
+          )}
+
           {user ? (
             <>
               <Link to="/dashboard" className={navLinkClass("/dashboard")}>
@@ -67,7 +73,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      
+      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden mt-4 flex flex-col items-center text-center space-y-2">
           <Link
@@ -77,13 +83,25 @@ const Navbar = () => {
           >
             HOME
           </Link>
-          <Link
-            to="/about"
-            className={navLinkClass("/about")}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            ABOUT
-          </Link>
+
+          {user ? (
+            <Link
+              to="/documents"
+              className={navLinkClass("/documents")}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              MY DOCUMENTS
+            </Link>
+          ) : (
+            <Link
+              to="/about"
+              className={navLinkClass("/about")}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              ABOUT
+            </Link>
+          )}
+
           {user ? (
             <>
               <Link

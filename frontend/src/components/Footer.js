@@ -28,20 +28,25 @@ const Footer = () => {
               HOME
             </Link>
           </li>
+
           <li>
-            <Link to="/about" className="block font-lora text-lime hover:text-indigo">
-              ABOUT
-            </Link>
+            {user ? (
+              <Link to="/documents" className="block font-lora text-lime hover:text-indigo">
+                MY DOCUMENTS
+              </Link>
+            ) : (
+              <Link to="/about" className="block font-lora text-lime hover:text-indigo">
+                ABOUT
+              </Link>
+            )}
           </li>
+
           {user ? (
-            <>
-              <li>
-                <Link to="/dashboard" className="block font-lora text-lime hover:text-indigo">
-                  DASHBOARD
-                </Link>
-              </li>
-              
-            </>
+            <li>
+              <Link to="/dashboard" className="block font-lora text-lime hover:text-indigo">
+                DASHBOARD
+              </Link>
+            </li>
           ) : (
             <li>
               <Link to="/login" className="block font-lora text-lime hover:text-indigo">

@@ -45,7 +45,13 @@ function MyDocuments() {
   };
 
   if (loading) {
-    return <p className="text-center mt-8 text-indigo">Loading your documents...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-pastel to-lilac text-indigo">
+        <div className="animate-spin text-4xl mb-4">✏️</div>
+        <p className="text-lg text-indigo font-lora">Fetching your documents...</p>
+      </div>
+      );
+
   }
 
   return (
