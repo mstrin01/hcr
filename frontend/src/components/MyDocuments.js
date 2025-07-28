@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "../firebase"; 
+import { auth, db } from "../firebase";
+
 function MyDocuments() {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,7 +9,6 @@ function MyDocuments() {
   useEffect(() => {
     const fetchDocuments = async () => {
       const user = auth.currentUser;
-
       if (!user) return;
 
       const q = query(
@@ -23,7 +23,17 @@ function MyDocuments() {
           ...doc.data(),
         }));
 
-        setDocuments(docs);
+        
+        const sortedDocs = docs.sort((a, b) => {
+          if (a.createdAt && b.createdAt) {
+            return b.createdAt.seconds - a.createdAt.seconds;
+          }
+          if (a.createdAt) return -1;
+          if (b.createdAt) return 1;
+          return 0;
+        });
+
+        setDocuments(sortedDocs);
       } catch (error) {
         console.error("Error fetching documents:", error);
       } finally {
@@ -50,8 +60,7 @@ function MyDocuments() {
         <div className="animate-spin text-4xl mb-4">✏️</div>
         <p className="text-lg text-indigo font-lora">Fetching your documents...</p>
       </div>
-      );
-
+    );
   }
 
   return (
